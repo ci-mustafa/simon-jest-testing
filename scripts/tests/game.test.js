@@ -2,7 +2,9 @@
  * @jest-environment jsdom
  */
 
-const {game} = require("../game")
+
+const {game} = require("../game");
+
 
 
 beforeAll(() => {
@@ -26,6 +28,12 @@ describe("game object contains correct keys", () => {
     });
     test("choices key exists", () => {
         expect("choices" in game).toBe(true);
+    });
+});
+
+describe("choices array", () => {
+    test("choices array should contains correct ids", () => {
+        expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
     });
 });
 
