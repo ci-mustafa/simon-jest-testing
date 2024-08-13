@@ -3,13 +3,16 @@
  */
 
 
-const {game} = require("../game");
+
+
+const {game, newGame} = require("../game");
+
 
 
 
 beforeAll(() => {
     const fs = require("fs");
-    let htmlPageContent = fs.appendFileSync("index.html", "utf-8");
+    let htmlPageContent = fs.readFileSync("index.html", "utf-8");
     document.open();
     document.write(htmlPageContent);
     document.close();
@@ -29,11 +32,31 @@ describe("game object contains correct keys", () => {
     test("choices key exists", () => {
         expect("choices" in game).toBe(true);
     });
-});
-
-describe("choices array", () => {
     test("choices array should contains correct ids", () => {
         expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
     });
 });
+
+
+describe("newGame function works correctly", () => {
+    beforeAll(() => {
+        game.score = 40;
+        game.playerMove = ["move1"];
+        game.currentGame = ["firstgame"];
+        document.getElementById("score").innerText = "10";
+        newGame();
+    });
+    test("should reset score to 0", () => {
+        expect(game.score).toBe(0);
+    });
+    test("should clear playerMove array", () => {
+        expect(game.playerMove.length).toBe(0);
+    });
+    test("should clear currentGame array", () => {
+        expect(game.currentGame.length).toBe(0);
+    });
+    test("should display zero for the element with id 'score' ", () => {
+        expect(document.getElementById("score").innerText).toEqual(0);
+    });
+})
 
