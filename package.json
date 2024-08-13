@@ -1,0 +1,23 @@
+{
+  "name": "simon-jest-testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ci-mustafa/simon-jest-testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ci-mustafa/simon-jest-testing/issues"
+  },
+  "homepage": "https://github.com/ci-mustafa/simon-jest-testing#readme",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
