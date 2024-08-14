@@ -5,9 +5,9 @@
 
 
 
-const {game, newGame, lightsOn, addTurn, showScore, showTurns} = require("../game");
+const {game, newGame, lightsOn, addTurn, showScore, showTurns, playerTurn} = require("../game");
 
-
+jest.spyOn(window, "alert").mockImplementation(() => { });
 
 
 beforeAll(() => {
@@ -96,6 +96,17 @@ describe("gameplay works correctly", () => {
         game.turnNumber = 42;
         showTurns();
         expect(game.turnNumber).toBe(0);
+    });
+    test("should increment the score if the turn is correct", () => {
+        game.playerMoves.push(game.currentGame[0]);
+        playerTurn();
+        expect(game.score).toBe(1);
+    });
+    test("clicking during computer sequence should fail", () => {
+        showTurns();
+        game.lastButton = "";
+        document.getElementById("button2").click();
+        expect(game.lastButton).toEqual("");
     });
 });
 
