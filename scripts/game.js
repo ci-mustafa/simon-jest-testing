@@ -1,4 +1,4 @@
-const { markAsUntransferable } = require("worker_threads");
+
 
 let game = {
     "score": 0,
@@ -17,12 +17,17 @@ function newGame() {
 
 function addTurn() {
     game.playerMove = [];
-    let randomTurn = Math.floor(Math.random() * game.choices.length);
-    game.currentGame.push(randomTurn);
+    game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]);
 }
 
 let showScore = () => {document.getElementById("score").innerText = game.score}
 
+function lightsOn(circ) {
+    document.getElementById(circ).classList.add("light");
+    setTimeout(function () {
+        document.getElementById(circ).classList.remove("light");
+    }, 400);
+}
 
 
-module.exports = {game, newGame};
+module.exports = {game, newGame, lightsOn, addTurn, showScore};
